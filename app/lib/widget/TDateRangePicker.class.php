@@ -8,8 +8,8 @@
 class TDateRangePicker extends TEntry implements AdiantiWidgetInterface
 {
 
-    private $formatDisplayData;
-    private $formatData;
+    private $formatDisplayDate;
+    private $formatDate;
     private $minDate;
     private $maxDate;
     private $startDate;
@@ -25,8 +25,13 @@ class TDateRangePicker extends TEntry implements AdiantiWidgetInterface
         $this->id   = 'tdaterangepicker' . mt_rand(1000000000, 1999999999);
         $this->{'style'}  = 'border: none; background:none; outline:none;';
         $this->{'style'} .= 'box-shadow: none; cursor: pointer; padding: 0px 20px';
-        // $this->reportrange->{'class'} = 'pull-left';
-
+        $this->setFormatDisplayDate('MMMM D, YYYY');
+        $this->setFormatDate('MM/DD/YYYY');
+        $this->setMaxDate('12/31/2015');
+        $this->setMinDate('01/01/2012');
+        $this->setStartDate("moment().subtract(29, 'days')");
+        $this->setEndDate('moment()');
+        $this->setDateLimit('60');
     }
 
 
@@ -67,16 +72,16 @@ class TDateRangePicker extends TEntry implements AdiantiWidgetInterface
           var cb = function(start, end, label) {
             console.log(start.toISOString(), end.toISOString(), label);
             var input = document.getElementById('".$this->id."');
-            input.value = start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY');
+            input.value = start.format('".$this->formatDisplayDate."') + ' - ' + end.format('".$this->formatDisplayDate."');
           };
 
           var optionSet = {
-            startDate: moment().subtract(29, 'days'),
-            endDate: moment(),
-            minDate: '01/01/2012',
-            maxDate: '12/31/2015',
+            startDate: ".$this->startDate.",
+            endDate: ".$this->endDate.",
+            minDate: '".$this->minDate."',
+            maxDate: '".$this->maxDate."',
             dateLimit: {
-                days: 60
+                days: ".$this->dateLimit."
             },
             showDropdowns: true,
             showWeekNumbers: true,
@@ -95,7 +100,7 @@ class TDateRangePicker extends TEntry implements AdiantiWidgetInterface
             buttonClasses: ['btn btn-default'],
             applyClass: 'btn-small btn-primary',
             cancelClass: 'btn-small',
-            format: 'MM/DD/YYYY',
+            format: '".$this->formatDate."',
             separator: ' para ',
             locale: {
             applyLabel: 'Aplicar',
@@ -109,7 +114,7 @@ class TDateRangePicker extends TEntry implements AdiantiWidgetInterface
             }
           };
 
-          $('#".$this->id."').val(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+          $('#".$this->id."').val(moment().subtract(29, 'days').format('".$this->formatDisplayDate."') + ' - ' + moment().format('".$this->formatDisplayDate."'));
           $('#".$reportrange->id."').daterangepicker(optionSet, cb);
           $('#".$reportrange->id."').on('show.daterangepicker', function() {
             console.log('show event fired');
@@ -118,7 +123,7 @@ class TDateRangePicker extends TEntry implements AdiantiWidgetInterface
             console.log('hide event fired');
           });
           $('#".$reportrange->id."').on('apply.daterangepicker', function(ev, picker) {
-            console.log('apply event fired, start/end dates are ' + picker.startDate.format('MMMM D, YYYY') + ' to ' + picker.endDate.format('MMMM D, YYYY'));
+            console.log('apply event fired, start/end dates are ' + picker.startDate.format('".$this->formatDisplayDate."') + ' to ' + picker.endDate.format('".$this->formatDisplayDate."'));
           });
           $('#".$reportrange->id."').on('cancel.daterangepicker', function(ev, picker) {
             console.log('cancel event fired');
@@ -137,29 +142,29 @@ class TDateRangePicker extends TEntry implements AdiantiWidgetInterface
 
 
     /**
-     * Set the value of Format Display Data
+     * Set the value of Format Display Date
      *
-     * @param mixed formatDisplayData
+     * @param mixed formatDisplayDate
      *
      * @return self
      */
-    public function setFormatDisplayData($formatDisplayData)
+    public function setFormatDisplayDate($formatDisplayDate)
     {
-        $this->formatDisplayData = $formatDisplayData;
+        $this->formatDisplayDate = $formatDisplayDate;
 
         return $this;
     }
 
     /**
-     * Set the value of Format Data
+     * Set the value of Format Date
      *
-     * @param mixed formatData
+     * @param mixed formatDate
      *
      * @return self
      */
-    public function setFormatData($formatData)
+    public function setFormatDate($formatDate)
     {
-        $this->formatData = $formatData;
+        $this->formatDate = $formatDate;
 
         return $this;
     }
