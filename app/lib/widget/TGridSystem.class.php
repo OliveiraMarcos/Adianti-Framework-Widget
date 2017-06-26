@@ -1,15 +1,8 @@
 <?php
 
 /**
-
- * TAccordion Container
-
- * Copyright (c) 2006-2010 Pablo Dall'Oglio
-
- * @author  Pablo Dall'Oglio <pablo [at] adianti.com.br>
-
- * @version 2.0, 2007-08-01
-
+ * TGridSystem 
+ * @author  Marcos Oliveira <>
  */
 
 class TGridSystem extends TElement
