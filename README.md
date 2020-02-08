@@ -4,28 +4,28 @@ Componentes para Adianti Framework
 ## Date Range Piker
 ### Exemplo
 ```
-$perildo = new TDateRangePicker('perildo');
-$this->form->addQuickField('Perildo', $perildo, '100%');
+$periodo = new TDateRangePicker('periodo');
+$this->form->addQuickField('Período', $periodo, '100%');
 
-$perildo->setFormatDisplayDate('MMMM D, YYYY');
-$perildo->setFormatDate('MM/DD/YYYY');
-$perildo->setMaxDate('12/31/2015');
-$perildo->setMinDate('01/01/2012');
-$perildo->setStartDate("moment().subtract(29, 'days')");
-$perildo->setEndDate('moment()');
-$perildo->setDateLimit('60');
+$periodo->setFormatDisplayDate('MMMM D, YYYY');
+$periodo->setFormatDate('MM/DD/YYYY');
+$periodo->setMaxDate('12/31/2015');
+$periodo->setMinDate('01/01/2012');
+$periodo->setStartDate("moment().subtract(29, 'days')");
+$periodo->setEndDate('moment()');
+$periodo->setDateLimit('60');
 ```
 
 ## Widget para Dashboard
 ### Exemplo
 ```
-$mostro = new TCount();
-$mostro->addField(new TCountField(258, 10, 'Teste', 'Primeiro teste', 'fa:search', 'asc'));
-$mostro->addField(new TCountField(257.23));
-$mostro->addField(new TCountField(580.22));
-$mostro->addField(new TCountField());
-$mostro->addField(new TCountField());
-$mostro->addField(new TCountField());
+$mostrar = new TCount();
+$mostrar->addField(new TCountField(258, 10, 'Teste', 'Primeiro teste', 'fa:search', 'asc'));
+$mostrar->addField(new TCountField(257.23));
+$mostrar->addField(new TCountField(580.22));
+$mostrar->addField(new TCountField());
+$mostrar->addField(new TCountField());
+$mostrar->addField(new TCountField());
 
 ```
 
